@@ -1,0 +1,13 @@
+.site_layout_content {
+  margin: 10px;
+  padding: 10px;
+  background: #fff;
+}
+
+.logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 0px;
+  color: white !important;
+}

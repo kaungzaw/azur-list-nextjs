@@ -1,7 +1,19 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import { SWRConfig } from "swr";
+import BaseLayout from "../components/BaseLayout";
+import api from "../utils/api";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const MyApp = ({ Component, pageProps }) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
+  const fetcher = (url) => api.get(url).then((res) => res.data);
 
-export default MyApp
+  return getLayout(
+    <SWRConfig value={{ fetcher }}>
+      <BaseLayout>
+        <Component {...pageProps} />
+      </BaseLayout>
+    </SWRConfig>
+  );
+};
+
+export default MyApp;
