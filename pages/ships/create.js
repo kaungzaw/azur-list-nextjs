@@ -12,7 +12,7 @@ const CreateShip = () => {
       await api.post("/ships", { ship: values });
       mutate("/ships");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

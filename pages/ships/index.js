@@ -26,7 +26,7 @@ const Ships = () => {
       ),
       onOk: async () => {
         try {
-          await api.delete(`/ships/${id}1`);
+          await api.delete(`/ships/${id}`);
           mutate(
             "/ships",
             ships.filter((ship) => ship.id !== id),

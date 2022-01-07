@@ -8,10 +8,14 @@ const handler = async (req, res) => {
   } else if (req.method === "DELETE") {
     const { id } = req.query;
     try {
+      await prisma.$connect();
       const deletedShip = await prisma.ship.delete({ where: { id } });
       res.status(200).json(deletedShip);
-    } catch {
-      res.status(400).json({ message: "No record found." });
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: error.toString().replace(/\n/g, "") });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 };
